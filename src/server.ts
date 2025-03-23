@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import connectDB from './Config/database';
-import userRoutes from './Routes/userRoutes';
-import thoughtRoutes from './Routes/thoughtRoutes';
+import userRoutes from './Routes/api/userRoutes';
+import thoughtRoutes from './Routes/api/thoughtRoutes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;

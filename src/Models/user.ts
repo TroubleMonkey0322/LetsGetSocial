@@ -1,5 +1,6 @@
 import { Schema, model, Types } from 'mongoose';
 
+
 const UserSchema = new Schema(
   {
     username: { type: String, unique: true, required: true, trim: true },
