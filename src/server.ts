@@ -5,7 +5,7 @@ import userRoutes from './Routes/api/userRoutes';
 import thoughtRoutes from './Routes/api/thoughtRoutes';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 connectDB();
 
