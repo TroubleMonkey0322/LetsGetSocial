@@ -61,4 +61,32 @@ router.delete('/api/thoughts/:thoughtId', async (req: Request, res: Response) =>
   }
 });
 
+export const deleteThought = async (req: Request, res: Response) => {
+  try {
+    const deletedThought = await User.findByIdAndDelete(req.params.id);
+
+    if (!deletedThought) {
+      return res.status(404).json({ error: 'Your thought was not found' });
+     }
+
+    res.json({ message: 'Your thought was deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete your thought' });
+  }
+};
+
+export const updateUserThought = async (req: Request, res: Response) => {
+  try {
+    const updatedThought = await User.findByIdAndUpdate(req.params.id);
+
+    if (!updatedThought) {
+      return res.status(404).json({ error: 'Your thought was not found' });
+     }
+
+    res.json({ message: 'Your thought was updated successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update your thought' });
+  }
+};
+
 export default router;

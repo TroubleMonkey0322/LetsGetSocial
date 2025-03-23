@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addReaction = exports.createThought = exports.getThoughts = void 0;
+exports.updateUserThought = exports.deleteThought = exports.addReaction = exports.createThought = exports.getThoughts = void 0;
 const thought_1 = require("../Models/thought");
 const user_1 = require("../Models/user");
 //import { Router } from 'express';
@@ -62,4 +62,30 @@ router.delete('/api/thoughts/:thoughtId', (req, res) => __awaiter(void 0, void 0
         return res.status(500).json({ message: 'Error deleting thought', error });
     }
 }));
+const deleteThought = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const deletedThought = yield user_1.User.findByIdAndDelete(req.params.id);
+        if (!deletedThought) {
+            return res.status(404).json({ error: 'Your thought was not found' });
+        }
+        res.json({ message: 'Your thought was deleted successfully' });
+    }
+    catch (err) {
+        res.status(500).json({ error: 'Failed to delete your thought' });
+    }
+});
+exports.deleteThought = deleteThought;
+const updateUserThought = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const updatedThought = yield user_1.User.findByIdAndUpdate(req.params.id);
+        if (!updatedThought) {
+            return res.status(404).json({ error: 'Your thought was not found' });
+        }
+        res.json({ message: 'Your thought was updated successfully' });
+    }
+    catch (err) {
+        res.status(500).json({ error: 'Failed to update your thought' });
+    }
+});
+exports.updateUserThought = updateUserThought;
 exports.default = router;
